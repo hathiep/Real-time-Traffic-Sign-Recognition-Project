@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Traffic Sign Recognition</title>
+
+    <!-- Add some basic styling for a cleaner look -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .main_block {
+            width: 50%;
+        }
+
+        #heading {
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #title {
+            text-align: center;
+            font-size: 40px;
+            color: green;
+        }
+
+        #container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+
+        #video_feed {
+            width: 50%;
+            max-width: 720px;
+            max-height: 540px;
+            border: 2px solid #333;
+            border-radius: 8px;
+        }
+
+        #result {
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: left;
+            font-size: 30px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="heading">
+        <h1 id="title">Real-time Traffic Sign Recognition Application</h1>
+    </div>
+    <div id="container">
+        <div id="result" class="main_block"></div>
+        <img id="video_feed" class="main_block" src="{{ url_for('video_feed') }}" alt="Video Feed">
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.on('update_result', function(data) {
+            var resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<strong>Tên biển báo:</strong> ' + data.class_name + '<br><strong>Tỉ lệ chính xác:</strong> ' + data.probability_value + '%' + '<br><strong>Ý nghĩa:</strong> ' + data.class_des + '<br><strong>Cảnh báo:</strong> ' + '<br>' + data.class_warning.replace(/\n/g, '<br>');
+        });
+    </script>
+</body>
+</html>

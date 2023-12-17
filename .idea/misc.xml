@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (Traffic_model)" project-jdk-type="Python SDK" />
+=======
+  <component name="Black">
+    <option name="sdkName" value="Python 3.8 (flaskProject)" />
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8 (flaskProject)" project-jdk-type="Python SDK" />
+>>>>>>> fad1295a1efb0b1e488c797005f6f22d6e9d7940
 </project>
