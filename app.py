@@ -146,7 +146,7 @@ def send_telegram_message(bot_token, chat_id, message):
 @app.route('/')
 def index():
     return render_template('index.html')
-git
+
 #Gọi đến hàm nhận diện ảnh
 @app.route('/video_feed')
 def video_feed():
